@@ -1,7 +1,7 @@
 // frontend/src/pages/auth/Login.jsx
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import API from "../../api/axios";
 
 export default function Login() {
@@ -163,12 +163,10 @@ export default function Login() {
         {/* Register Link */}
         <p className="text-center text-sm mt-5 text-gray-500">
           Don't have an account?{" "}
-          <a
-            href="/signup"
-            className="text-blue-600 font-medium hover:underline"
-          >
-            Register
-          </a>
+         <Link 
+           to="/signup">
+           Register
+         </Link>
         </p>
       </div>
     </div>
