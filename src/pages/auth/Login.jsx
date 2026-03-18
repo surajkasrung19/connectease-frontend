@@ -163,9 +163,7 @@ export default function Login() {
         {/* Register Link */}
         <p className="text-center text-sm mt-5 text-gray-500">
           Don't have an account?{" "}
-         <Link 
-           to="/signup"
-           className="text-blue-600 font-medium hover:underline">
+         <Link to="/signup" className="text-blue-600 font-medium underline">
            Register
          </Link>
         </p>
