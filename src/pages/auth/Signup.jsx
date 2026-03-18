@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import API from "../../api/axios";
 import { Eye, EyeOff } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -327,12 +327,11 @@ export default function Signup() {
 
         <p className="text-center text-sm mt-5 text-gray-500">
           Already have an account?{" "}
-          <a
-            href="/login"
+         <Link
             className="text-blue-600 font-medium hover:underline"
           >
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </div>
