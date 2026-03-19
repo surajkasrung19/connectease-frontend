@@ -9,6 +9,7 @@ export default function HomePage() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [testimonials, setTestimonials] = useState([]);
+  const [cardWidth, setCardWidth] = useState(100); //percentage
 
   const visibleTestimonials = [...testimonials, ...testimonials];
 
@@ -54,6 +55,21 @@ export default function HomePage() {
     },
   ];
 
+  useEffect(() => {
+    API.get("/").catch(() => {});
+  }, []);
+  
+  useEffect(() => {
+    const updateWidth = () = {
+      if (window.innerWidth >= 1024) setCardWidth(33.33); 
+      else if (window.innerWidth >= 640) setCardWidth(50);
+      else setCardWidth(100);
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+    
   // Redirect admin directly
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -107,12 +123,7 @@ export default function HomePage() {
   useEffect(() => {
     if (testimonials.length === 0) return;
     const interval = setInterval(() => {
-      setIndex((prev) => {
-        if (prev >= testimonials.length) {
-          return 0;
-        }
-        return prev + 1;
-      });
+      setIndex((prev) => (prev >= testimonials.length ? 0 : prev + 1));
     }, 3000);
     return () => clearInterval(interval);
   }, [testimonials.length]);
@@ -378,11 +389,11 @@ export default function HomePage() {
             <div
               className="flex transition-transform duration-700 ease-in-out"
               style={{
-                transform: `translateX(-${index * 33.33}%)`,
+                transform: `translateX(-${index * cardWidth}%)`,
               }}
             >
               {visibleTestimonials.map((t, i) => (
-                <div key={i} className="min-w-[33.33%] px-3">
+                <div key={i} style={{ minWidth: `${cardWidth}% }} className="px-3">
                   <div className="bg-white p-6 rounded-xl testimonial-card border border-gray-100 shadow-sm h-full">
                     {/* Star rating — styled slightly better */}
                     <div className="flex gap-0.5 mb-3">
