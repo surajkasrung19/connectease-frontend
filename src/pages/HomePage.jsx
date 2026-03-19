@@ -60,7 +60,7 @@ export default function HomePage() {
   }, []);
   
   useEffect(() => {
-    const updateWidth = () = {
+    const updateWidth = () => {
       if (window.innerWidth >= 1024) setCardWidth(33.33); 
       else if (window.innerWidth >= 640) setCardWidth(50);
       else setCardWidth(100);
@@ -393,7 +393,7 @@ export default function HomePage() {
               }}
             >
               {visibleTestimonials.map((t, i) => (
-                <div key={i} style={{ minWidth: `${cardWidth}% }} className="px-3">
+                <div key={i} style={{ minWidth: `${cardWidth}%` }} className="px-3">
                   <div className="bg-white p-6 rounded-xl testimonial-card border border-gray-100 shadow-sm h-full">
                     {/* Star rating — styled slightly better */}
                     <div className="flex gap-0.5 mb-3">
